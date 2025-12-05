@@ -8,24 +8,24 @@ test.describe('Поиск элементов по роли "button"', () => {
   // Задание 1: Найди кнопку "Основное действие" используя getByRole с указанием роли и текста
   // После нахождения кнопки проверь что она видима и имеет класс primary-btn
   test('Найти основную кнопку по роли и тексту', async ({ page }) => {
-    const primaryButton = // локатор
-      await expect(primaryButton).toBeVisible();
+    const primaryButton = page.getByRole('button', { name: 'Основное действие' });
+    await expect(primaryButton).toBeVisible();
     await expect(primaryButton).toHaveClass(/primary-btn/);
   });
 
   // Задание 2: Найди неактивную кнопку используя getByRole с указанием disabled состояния
   // Проверь что кнопка видима и действительно disabled
   test('Найти неактивную кнопку по роли и состоянию', async ({ page }) => {
-    const disabledButton = // локатор
-      await expect(disabledButton).toBeVisible();
+    const disabledButton = page.getByRole('button', { disabled: true });
+    await expect(disabledButton).toBeVisible();
     await expect(disabledButton).toBeDisabled();
   });
 
   // Задание 3: Найди элемент div с ролью button (не настоящую кнопку)
   // Проверь что элемент видим и содержит текст "Div как кнопка"
   test('Найти div с ролью кнопки', async ({ page }) => {
-    const divButton = // локатор
-      await expect(divButton).toBeVisible();
+    const divButton = page.locator('//div[@role="button"]');
+    await expect(divButton).toBeVisible();
     await expect(divButton).toHaveText('Div как кнопка');
   });
 });
